@@ -105,7 +105,7 @@ header nav ul li a {
 
 /* Featured Work Section */
 .featured-work {
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -113,23 +113,30 @@ header nav ul li a {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .photo-preview {
     flex: 1;
-    max-width: 25%; /* Adjusted for better spacing on larger screens */
+    max-width: 20%; /* Adjust as needed */
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
 }
 
 .photo-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease-in-out;
 }
+
+.photo-preview:hover img {
+    transform: scale(1.1);
+}
+
 
 
 /* Footer */
@@ -199,8 +206,26 @@ footer {
     }
 
     .photo-preview {
-        max-width: 80%; 
+        max-width: 100%; 
+        width: 100%;
+        padding-top: 75%;
+        position: relative;
+        overflow: hidden;
     }
 
+    .photo-preview img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+    }
     
+}
+
+@media (hover: none) {
+    .photo-preview:hover img {
+        transform: none; /* Disable the hover effect on devices that do not support hover */
+    }
 }
