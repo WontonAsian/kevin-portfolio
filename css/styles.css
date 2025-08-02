@@ -1,231 +1,78 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Header */
-header {
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: #f4f4f4;
+    flex-direction: column;
+    background-color: white;
 }
 
-header .logo {
-    font-size: 1.5rem;
+header {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
     font-weight: bold;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-}
-
-header nav ul li {
-    margin-left: 2rem;
-}
-
-header nav ul li a {
-    text-decoration: none;
-    color: #333;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger span {
-    height: 3px;
-    width: 25px;
-    background: #333;
-    margin-bottom: 4px;
-    border-radius: 2px;
-}
-
-/* Hero Section */
-.hero {
-    height: 100vh;
-    background: url('your-image.jpg') no-repeat center center/cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    padding: 0 2rem;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.cta-button {
-    background: #333;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-/* About Me Teaser */
-.about-teaser {
-    padding: 2rem;
-    background: #f4f4f4;
-    text-align: center;
-}
-
-.about-teaser h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.cta-link {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #333;
+header a:hover {
     text-decoration: underline;
 }
 
-/* Featured Work Section */
-.featured-work {
-    padding: 1rem;
-    text-align: center;
-}
-
-.work-preview {
+main {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.photo-preview {
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
     flex: 1;
-    max-width: 20%; /* Adjust as needed */
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
 }
 
-.photo-preview img {
-    width: 100%;
-    height: 100%;
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+img {
+    width: 500px;
+    height: 500px;
     object-fit: cover;
-    transition: transform 0.3s ease-in-out;
+    object-position: center;
 }
 
-.photo-preview:hover img {
-    transform: scale(1.1);
-}
-
-
-
-/* Footer */
 footer {
-    padding: 1rem;
-    background: #333;
+    background-color: black;
     color: white;
     text-align: center;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.social-links {
-    margin-top: 1rem;
-}
-
-.social-links a {
-    color: white;
-    margin: 0 1rem;
-    text-decoration: none;
-    font-size: 2rem;
-}
-
-.social-links a:hover {
-    color: #ddd;
-}
-
-/* Mobile Styles */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        max-height: 0;
-        overflow: hidden;
-        background-color: #f4f4f4;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: max-height 0.3s ease-in-out;
-    }
-
-    .nav-links.active {
-        max-height: 500px;
-    }
-
-    .nav-links ul {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .nav-links ul li {
-        margin: 1rem 0;
-        text-align: center;
-    }
-
-    .hamburger {
-        display: flex; /* Show the hamburger icon on mobile */
-    }
-
-    header {
-        position: relative;
-    }
-
-
-    .work-preview {
+    main {
+        display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .photo-preview {
-        max-width: 100%; 
-        width: 100%;
-        padding-top: 75%;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .photo-preview img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-    }
-    
-}
-
-@media (hover: none) {
-    .photo-preview:hover img {
-        transform: none; /* Disable the hover effect on devices that do not support hover */
+        text-align: center;
     }
 }
+
+
