@@ -9,22 +9,66 @@
 <body>
     <header>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
+            <a href="#" onclick="showPage('about')" class="nav-link">About</a>
+            <a href="#" onclick="showPage('contact')" class="nav-link">Contact</a>
         </nav>
     </header>
 
-    <main>
+    <!-- Home Page -->
+    <main id="home" class="page active">
         <div class="content">
             <h1>Welcome to My Simple Static Page</h1>
-            <p>Here is a picture of the cherry blossoms from a drone at the University of Washington Quad</p>
+            <p>Here is a picture of a mountain from the hike rock trail in Washington/p>
         </div>
-        <img src="images/cherry blossam.JPG" alt="cherry photo">
+        <div class="image-container">
+            <img src="images/highrock.JPG" alt="high rock mountain">
+        </div>
+    </main>
+
+    <!-- About Page -->
+    <main id="about" class="page">
+        <div class="content">
+            <h1>About Me</h1>
+            <p>Here is the about page, and a pictue of a motorcycle on highway</p>
+        </div>
+        <div>
+            <img src="images/motercylce roller.JPG" alt="motorcycle photo">
+        </div>
+    </main>
+
+    <!-- Contact Page -->
+    <main id="contact" class="page">
+        <div class="content">
+            <h1>Contact</h1>
+            <p>Here is the contact page, and a picture of the cascade in Washington!</p>
+        </div>
+        <div>
+            <img src="images/cascade.JPG" alt="cascade photo">
+        </div>
     </main>
 
     <footer>
         <p>Kevin Nguyen 2025</p>
     </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
