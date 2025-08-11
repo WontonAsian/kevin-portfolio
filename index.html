@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Static Page</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.min.css">
 </head>
 <body>
     <header>
         <nav>
-            <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
-            <a href="#" onclick="showPage('about')" class="nav-link">About</a>
-            <a href="#" onclick="showPage('contact')" class="nav-link">Contact</a>
+            <a href="#" class="nav-link" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="about">About</a>
+            <a href="#" class="nav-link" data-page="contact">Contact</a>
         </nav>
     </header>
 
     <!-- Home Page -->
-    <main id="home" class="page active">
+    <main class="page" data-page="home">
         <div class="content">
             <h1>Welcome to My Simple Static Page</h1>
-            <p>Here is a picture of a mountain from the hike rock trail in Washington/p>
+            <p>Here is a picture of a mountain from the hike rock trail in Washington</p>
         </div>
         <div class="image-container">
-            <img src="images/highrock.JPG" alt="high rock mountain">
+            <img src="images/smallhighrock.JPG" alt="high rock mountain">
         </div>
     </main>
 
     <!-- About Page -->
-    <main id="about" class="page">
+    <main class="page" data-page="about">
         <div class="content">
             <h1>About Me</h1>
-            <p>Here is the about page, and a pictue of a motorcycle on highway</p>
+            <p>Here is the about page, and a picture of a motorcycle on highway</p>
         </div>
         <div>
             <img src="images/motercylce roller.JPG" alt="motorcycle photo">
@@ -38,10 +38,10 @@
     </main>
 
     <!-- Contact Page -->
-    <main id="contact" class="page">
+    <main class="page" data-page="contact">
         <div class="content">
             <h1>Contact</h1>
-            <p>Here is the contact page, and a picture of the cascade in Washington!</p>
+            <p>Here is the contact page, and a picture of the cascade in Seattle!</p>
         </div>
         <div>
             <img src="images/cascade.JPG" alt="cascade photo">
@@ -52,23 +52,6 @@
         <p>Kevin Nguyen 2025</p>
     </footer>
 
-    <script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navigation links
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

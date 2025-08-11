@@ -41,7 +41,8 @@ header a.active {
     flex: 1;
 }
 
-.page.active {
+.page.active,
+.page[data-page="home"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
