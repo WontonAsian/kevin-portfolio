@@ -6,19 +6,26 @@
   "scripts": {
     "build": "gulp",
     "watch": "gulp watch",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "screenshots": "node scripts/screenshots.js"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-sass": "^5.1.0",
-    "sass": "^1.45.0",
-    "gulp-eslint": "^6.0.0",
     "eslint": "^8.0.0",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
-    "gulp-rename": "^2.0.0"
+    "gulp-eslint": "^6.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "puppeteer": "^24.16.2",
+    "sass": "^1.45.0"
   },
-  "keywords": ["portfolio", "static", "gulp", "scss"],
+  "keywords": [
+    "portfolio",
+    "static",
+    "gulp",
+    "scss"
+  ],
   "author": "Kevin Nguyen",
   "license": "MIT"
 }

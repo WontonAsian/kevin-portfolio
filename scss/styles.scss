@@ -1,4 +1,11 @@
 
+// Universal reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 // Mixins
 @mixin flex-center {
     display: flex;
@@ -12,20 +19,19 @@
     align-items: center;
 }
 
-// Reset and base styles
 body {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: $white;
+    background-color: white;
+    padding-bottom: 60px; // Space for fixed footer
 }
 
 // Header styles
 header {
-    background-color: $black;
-    color: $white;
+    background-color: black;
+    color: white;
     padding: 1rem;
     text-align: center;
     
@@ -35,7 +41,7 @@ header {
     }
     
     a {
-        color: $white;
+        color: white;
         text-decoration: none;
         font-weight: bold;
         cursor: pointer;
@@ -45,9 +51,16 @@ header {
         }
         
         &.active {
-            color: $gray;
+            color: #ccc;
         }
     }
+}
+
+// Main content area
+main {
+    min-height: calc(100vh - 120px); // Subtract header and footer height
+    display: flex;
+    flex-direction: column;
 }
 
 // Page styles
@@ -57,8 +70,7 @@ header {
     align-items: center;
     gap: 3rem;
     padding: 2rem;
-    flex: 1;
-    min-height: 400px;
+    flex: 1; 
 }
 
 // Show only home page by default
@@ -74,7 +86,7 @@ header {
 h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: $black;
+    color: black;
 }
 
 p {
@@ -113,12 +125,19 @@ p {
 
 // Footer styles
 footer {
-    background-color: $black;
-    color: $white;
+    background-color: black;
+    color: white;
     text-align: center;
     padding: 1rem;
     width: 100%;
     box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 // Responsive design
@@ -128,6 +147,8 @@ footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        min-height: auto; // Remove fixed height on mobile
+        padding: 1rem; // Reduce padding on mobile
     }
     
     // Show only home page by default on mobile
@@ -146,9 +167,18 @@ footer {
         aspect-ratio: 16/9;
     }
     
+    // Constrain large images on mobile to prevent layout issues
     .page:not([data-page="home"]) div:last-child {
         width: 100%;
         max-width: 500px;
-        height: auto;
+        height: 300px; // Fixed height for large images on mobile
+        overflow: hidden;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
     }
 }
