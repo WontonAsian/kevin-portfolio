@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-// CSS Custom Properties for maintainable design system
+// CSS Custom Properties
 :root {
     --primary-color: #0ea5e9;
     --secondary-color: #0284c7;
@@ -28,16 +28,6 @@
     align-items: center;
 }
 
-@mixin flex-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-@mixin gradient-bg {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-}
-
 @mixin card-style {
     background: var(--white);
     border-radius: var(--border-radius);
@@ -50,6 +40,14 @@
     }
 }
 
+@mixin image-style {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: var(--transition);
+}
+
 // Base styles
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -60,7 +58,7 @@ body {
     overflow-x: hidden;
 }
 
-// Header with modern design
+// Header
 header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -102,7 +100,7 @@ header {
         
         &:hover {
             color: var(--primary-color);
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(14, 165, 233, 0.1);
             
             &::before {
                 width: 80%;
@@ -111,7 +109,7 @@ header {
         
         &.active {
             color: var(--primary-color);
-            background: rgba(102, 126, 234, 0.15);
+            background: rgba(14, 165, 233, 0.15);
             
             &::before {
                 width: 80%;
@@ -120,7 +118,7 @@ header {
     }
 }
 
-// Main content area
+// Main content
 main {
     min-height: calc(100vh - 140px);
     padding: 2rem;
@@ -132,7 +130,7 @@ main {
     box-shadow: var(--shadow);
 }
 
-// Page styles with modern layout
+// Page layout
 .page {
     display: none;
     min-height: calc(100vh - 200px);
@@ -142,7 +140,6 @@ main {
     animation: fadeInUp 0.6s ease-out;
 }
 
-// Show home page by default
 .page[data-page="home"] {
     display: flex;
 }
@@ -168,21 +165,16 @@ main {
     }
 }
 
-// Image containers with modern styling
+// Image components
 .image-container {
     width: 600px;
     height: 400px;
     border-radius: var(--border-radius);
     overflow: hidden;
     @include card-style;
-    position: relative;
     
     img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: var(--transition);
+        @include image-style;
     }
     
     &:hover img {
@@ -190,30 +182,7 @@ main {
     }
 }
 
-// About and Contact page images
-.page[data-page="about"] div:last-child,
-.page[data-page="contact"] div:last-child {
-    width: 600px;
-    height: 500px;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    @include card-style;
-    position: relative;
-    
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: var(--transition);
-    }
-    
-    &:hover img {
-        transform: scale(1.05);
-    }
-}
-
-// Gallery styles
+// Gallery
 .gallery-container {
     flex: 1;
     max-width: 800px;
@@ -235,11 +204,7 @@ main {
     aspect-ratio: 4/3;
     
     img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: var(--transition);
+        @include image-style;
     }
     
     .gallery-overlay {
@@ -276,7 +241,7 @@ main {
     }
 }
 
-// Gallery page specific layout
+// Gallery page layout
 .page[data-page="gallery"] {
     flex-direction: column;
     align-items: center;
@@ -292,7 +257,7 @@ main {
     }
 }
 
-// Footer with modern design
+// Footer
 footer {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -322,7 +287,7 @@ footer {
     }
 }
 
-// Responsive design with mobile-first approach
+// Responsive design
 @media (max-width: 1024px) {
     .page {
         flex-direction: column;
@@ -337,9 +302,7 @@ footer {
         font-size: 2.8rem;
     }
     
-    .image-container,
-    .page[data-page="about"] div:last-child,
-    .page[data-page="contact"] div:last-child {
+    .image-container {
         width: 100%;
         max-width: 500px;
         height: 350px;
@@ -363,7 +326,6 @@ footer {
             padding: 0.5rem 0.75rem;
             border-radius: 8px;
             font-weight: 500;
-            position: relative;
             flex: 1;
             text-align: center;
             margin: 0 0.25rem;
@@ -409,9 +371,7 @@ footer {
         }
     }
     
-    .image-container,
-    .page[data-page="about"] div:last-child,
-    .page[data-page="contact"] div:last-child {
+    .image-container {
         height: 250px;
         margin-top: 0;
     }
@@ -436,9 +396,7 @@ footer {
         font-size: 1.8rem;
     }
     
-    .image-container,
-    .page[data-page="about"] div:last-child,
-    .page[data-page="contact"] div:last-child {
+    .image-container {
         height: 200px;
     }
     
