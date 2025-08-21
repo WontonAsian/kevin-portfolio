@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Static Page</title>
+    <meta name="description" content="Kevin Nguyen's Portfolio - Frontend Developer showcasing projects and skills">
+    <title>Kevin Nguyen - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
     <link rel="stylesheet" href="css/styles.min.css">
     <script src="js/script.js"></script>
 </head>
@@ -12,6 +17,7 @@
         <nav>
             <a href="#" class="nav-link" data-page="home">Home</a>
             <a href="#" class="nav-link" data-page="about">About</a>
+            <a href="#" class="nav-link" data-page="gallery">Gallery</a>
             <a href="#" class="nav-link" data-page="contact">Contact</a>
         </nav>
     </header>
@@ -20,11 +26,11 @@
         <!-- Home Page -->
         <section class="page" data-page="home">
             <div class="content">
-                <h1>Welcome to My Simple Static Page</h1>
-                <p>Here is a picture of a mountain from the hike rock trail in Washington</p>
+                <h1>Welcome to My Portfolio</h1>
+                <p>Here's a glimpse of my work and adventures.</p>
             </div>
             <div class="image-container">
-                <img src="images/smallhighrock.JPG" alt="high rock mountain">
+                <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington">
             </div>
         </section>
 
@@ -32,21 +38,61 @@
         <section class="page" data-page="about">
             <div class="content">
                 <h1>About Me</h1>
-                <p>Here is the about page, and a picture of a motorcycle on highway</p>
+                <p>I'm a UW Graduate who loves both coding and adventure. When I'm not building websites, you'll find me exploring the outdoors and capturing moments through photography.</p>
             </div>
-            <div>
-                <img src="images/motercylce-roller.JPG" alt="motorcycle photo">
+            <div class="image-container">
+                <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway">
+            </div>
+        </section>
+
+        <!-- Gallery Page -->
+        <section class="page" data-page="gallery">
+            <div class="content">
+                <h1>Photo Gallery</h1>
+                <p>Explore my photography collection featuring landscapes, adventures, and memorable moments.</p>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="landscape">
+                        <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>High Rock Mountain</h3>
+                            <p>Washington State</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="adventure">
+                        <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>Highway Adventure</h3>
+                            <p>Open Road</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="nature">
+                        <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>Cascade Mountains</h3>
+                            <p>Seattle, WA</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="nature">
+                        <img src="images/cherry blossam.JPG" alt="Cherry Blossoms at UW" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>Cherry Blossoms</h3>
+                            <p>University of Washington</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Contact Page -->
         <section class="page" data-page="contact">
             <div class="content">
-                <h1>Contact</h1>
-                <p>Here is the contact page, and a picture of the cascade in Seattle!</p>
+                <h1>Get In Touch</h1>
+                <p>Interested in working together? Let's connect and discuss your next project!</p>
             </div>
-            <div>
-                <img src="images/cascade.JPG" alt="cascade photo">
+            <div class="image-container">
+                <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle">
             </div>
         </section>
     </main>

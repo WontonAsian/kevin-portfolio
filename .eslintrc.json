@@ -15,5 +15,13 @@
     "semi": ["error", "always"],
     "no-unused-vars": "warn",
     "no-console": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "linebreak-style": "off"
+      }
+    }
+  ]
 }

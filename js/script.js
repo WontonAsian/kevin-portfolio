@@ -11,32 +11,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Show home page by default
-    const homePage = document.querySelector('[data-page="home"]');
-    if (homePage) {
-        homePage.style.display = 'flex';
-    }
-    
-    // Set home nav link as active
-    const homeLink = document.querySelector('[data-page="home"]');
-    if (homeLink) {
-        homeLink.classList.add('active');
-    }
+    // Initialize: Show home page and set active nav link
+    showPage('home');
 });
 
 function showPage(pageName) {
-    // Hide all pages EXCEPT the target page
+    // Hide all pages first
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => {
-        const pageDataPage = page.getAttribute('data-page');
-        if (pageDataPage === pageName) {
-            page.style.display = 'flex';
-        } else {
-            page.style.display = 'none';
-        }
+        page.style.display = 'none';
     });
     
-    // Update navigation links
+    // Show the target page
+    const targetPage = document.querySelector(`.page[data-page="${pageName}"]`);
+    if (targetPage) {
+        targetPage.style.display = 'flex';
+    }
+    
+    // Update navigation links - remove active from all
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.classList.remove('active');
