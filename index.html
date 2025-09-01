@@ -18,6 +18,7 @@
             <a href="#" class="nav-link" data-page="home">Home</a>
             <a href="#" class="nav-link" data-page="about">About</a>
             <a href="#" class="nav-link" data-page="gallery">Gallery</a>
+            <a href="#" class="nav-link" data-page="video">Video</a>
             <a href="#" class="nav-link" data-page="contact">Contact</a>
         </nav>
     </header>
@@ -39,9 +40,52 @@
             <div class="content">
                 <h1>About Me</h1>
                 <p>I'm a UW Graduate who loves both coding and adventure. When I'm not building websites, you'll find me exploring the outdoors and capturing moments through photography.</p>
+                
+                <!-- Accordion Component -->
+                <div class="accordion">
+                    <div class="accordion-item active" data-accordion-item="1">
+                        <div class="accordion-header">
+                            <span class="accordion-icon">－</span>
+                            <h3>Frontend Development</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p>I specialize in creating responsive, modern web experiences using HTML, CSS, JavaScript, and React. My focus is on clean code, performance, and user experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" data-accordion-item="2">
+                        <div class="accordion-header">
+                            <span class="accordion-icon">＋</span>
+                            <h3>Photography & Adventure</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p>When I'm not coding, I'm exploring the Pacific Northwest with my camera. From mountain peaks to coastal trails, I capture the beauty of nature and share those moments through my lens.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" data-accordion-item="3">
+                        <div class="accordion-header">
+                            <span class="accordion-icon">＋</span>
+                            <h3>Car Maintenance & Problem Solving</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p>I love working on my cars - a 2005 Acura RSX and 1997 Acura Integra. From routine maintenance to troubleshooting complex issues, I approach both car problems and coding challenges with the same systematic mindset: diagnose the issue, research solutions, and implement fixes step by step.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" data-accordion-item="4">
+                        <div class="accordion-header">
+                            <span class="accordion-icon">＋</span>
+                            <h3>Continuous Learning</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p>The tech world evolves rapidly, and I'm always learning new technologies and techniques. Whether it's mastering new frameworks or exploring different photography styles, I believe in staying curious and adaptable.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="image-container">
-                <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway">
+                <img src="images/projectcar.jpg" alt="My cars">
             </div>
         </section>
 
@@ -81,6 +125,24 @@
                             <p>University of Washington</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Page -->
+        <section class="page" data-page="video">
+            <div class="content">
+                <h1>Cinematic Videos</h1>
+                <p>Watch some of my adventures. These videos captures some moments with friends.</p>
+            </div>
+            <div class="video-container">
+                <video controls poster="images/friends.JPEG">
+                    <source src="videos/cinematic.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <h3>Road Trip With Friends</h3>
+                    <p>Driving to the coast with friends to play spikeball</p>
                 </div>
             </div>
         </section>

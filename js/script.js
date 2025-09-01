@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize: Show home page and set active nav link
     showPage('home');
+    
+    // Initialize accordion functionality
+    initAccordion();
 });
 
 function showPage(pageName) {
@@ -39,4 +42,33 @@ function showPage(pageName) {
     if (clickedLink) {
         clickedLink.classList.add('active');
     }
+}
+
+// Accordion functionality
+function initAccordion() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const icon = item.querySelector('.accordion-icon');
+        
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all accordion items
+            accordionItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherIcon = otherItem.querySelector('.accordion-icon');
+                otherIcon.textContent = '＋';
+                otherIcon.style.transform = 'rotate(0deg)';
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                icon.textContent = '－';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
 }

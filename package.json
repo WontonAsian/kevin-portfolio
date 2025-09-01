@@ -6,6 +6,7 @@
   "scripts": {
     "build": "gulp",
     "watch": "gulp watch",
+    "dev": "live-server --port=3000 --open=/",
     "lint": "gulp lint",
     "screenshots": "node scripts/screenshots.js"
   },
@@ -17,6 +18,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
+    "live-server": "^1.2.2",
     "puppeteer": "^24.16.2",
     "sass": "^1.45.0"
   },
