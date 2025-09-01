@@ -394,7 +394,7 @@ main {
     }
     
     .video-info {
-        padding: 1rem;
+        padding: 1rem 1rem 1.5rem 1rem; 
         text-align: left;
         
         h3 {
@@ -407,7 +407,7 @@ main {
         p {
             font-size: 0.95rem;
             color: var(--text-light);
-            margin: 0;
+            margin: 0 0 0.5rem 0;
             line-height: 1.5;
         }
     }
@@ -530,6 +530,34 @@ footer {
     .image-container {
         height: 250px;
         margin-top: 0;
+    }
+    
+    // Mobile accordion styling
+    .accordion {
+        .accordion-header {
+            // Center the entire header content
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            
+            h3 {
+                // Center the title text
+                text-align: center;
+                flex: 0 1 auto; // Don't stretch, just take needed space
+            }
+            
+            .accordion-icon {
+                // Keep icon on the side
+                flex-shrink: 0;
+            }
+        }
+        
+        .accordion-content {
+            p {
+                padding-left: 0;
+                text-align: center;
+            }
+        }
     }
 }
 
