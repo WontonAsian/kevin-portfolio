@@ -22,13 +22,13 @@ function showPage(pageName) {
     // Hide all pages first
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => {
-        page.style.display = 'none';
+        page.classList.remove('active');
     });
     
     // Show the target page
     const targetPage = document.querySelector(`.page[data-page="${pageName}"]`);
     if (targetPage) {
-        targetPage.style.display = 'flex';
+        targetPage.classList.add('active');
     }
     
     // Update navigation links - remove active from all
@@ -60,15 +60,14 @@ function initAccordion() {
                 otherItem.classList.remove('active');
                 const otherIcon = otherItem.querySelector('.accordion-icon');
                 otherIcon.textContent = '＋';
-                otherIcon.style.transform = 'rotate(0deg)';
             });
             
             // Open clicked item if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
                 icon.textContent = '－';
-                icon.style.transform = 'rotate(0deg)';
             }
         });
     });
 }
+
