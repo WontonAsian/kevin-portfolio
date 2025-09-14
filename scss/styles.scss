@@ -163,10 +163,7 @@ main {
     
     &[data-page="about"].active {
         align-items: flex-start;
-        
-        @media (min-width: 769px) {
-            padding: 4rem 4rem 4rem 4rem;
-        }
+        padding: 3rem 3rem 3rem 3rem;
     }
     
     &[data-page="gallery"].active {
