@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize slider functionality
     initSlider();
     
-    
     // Initialize enhanced page transitions
     initPageTransitions();
 });
@@ -78,185 +77,78 @@ function initAccordion() {
     });
 }
 
-// Slider functionality
+// Slider functionality with seamless infinite effect
 function initSlider() {
     const sliderTrack = document.getElementById('sliderTrack');
     const prevBtn = document.getElementById('sliderPrev');
     const nextBtn = document.getElementById('sliderNext');
-    const dots = document.querySelectorAll('.dot');
-    const sliderItems = document.querySelectorAll('.slider-item');
     
-    let currentSlide = 0;
-    const totalSlides = sliderItems.length;
+    let currentSlide = 1; // Start at slide 1 (first real slide)
+    const totalSlides = 5;
+    const slideWidth = 600; // CSS variable --slide-width
     let isTransitioning = false;
-    
-    // Touch/drag variables
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    let dragThreshold = 50;
     
     // Update slider position
     function updateSlider() {
-        if (isTransitioning) return;
-        
-        isTransitioning = true;
-        const translateX = -currentSlide * 20; // 20% per slide (100% / 5 slides)
-        sliderTrack.style.transform = `translateX(${translateX}%)`;
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
-        
-        // Update slider items
-        sliderItems.forEach((item, index) => {
-            item.classList.toggle('active', index === currentSlide);
-        });
-        
-        // Reset transition flag after animation
-        setTimeout(() => {
-            isTransitioning = false;
-        }, 500);
-    }
-    
-    // Go to specific slide
-    function goToSlide(slideIndex) {
-        if (isTransitioning) return;
-        currentSlide = slideIndex;
-        updateSlider();
+        const translateX = -currentSlide * slideWidth;
+        sliderTrack.style.transform = `translateX(${translateX}px)`;
     }
     
     // Go to next slide
     function nextSlide() {
         if (isTransitioning) return;
-        currentSlide = (currentSlide + 1) % totalSlides;
+        isTransitioning = true;
+        
+        currentSlide++;
         updateSlider();
+        
+        // Check if we need to loop
+        setTimeout(() => {
+            if (currentSlide > totalSlides) {
+                // We're at a clone, jump to the real slide
+                currentSlide = 1;
+                sliderTrack.style.transition = 'none';
+                updateSlider();
+                // Re-enable transitions
+                setTimeout(() => {
+                    sliderTrack.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                }, 10);
+            }
+            isTransitioning = false;
+        }, 500);
     }
     
     // Go to previous slide
     function prevSlide() {
         if (isTransitioning) return;
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        isTransitioning = true;
+        
+        currentSlide--;
         updateSlider();
+        
+        // Check if we need to loop
+        setTimeout(() => {
+            if (currentSlide < 1) {
+                // We're at a clone, jump to the real slide
+                currentSlide = totalSlides;
+                sliderTrack.style.transition = 'none';
+                updateSlider();
+                // Re-enable transitions
+                setTimeout(() => {
+                    sliderTrack.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                }, 10);
+            }
+            isTransitioning = false;
+        }, 500);
     }
     
     // Event listeners for navigation buttons
     nextBtn.addEventListener('click', nextSlide);
     prevBtn.addEventListener('click', prevSlide);
     
-    // Event listeners for dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToSlide(index));
-    });
-    
-    // Touch/drag event listeners for mobile
-    sliderTrack.addEventListener('touchstart', handleTouchStart, { passive: false });
-    sliderTrack.addEventListener('touchmove', handleTouchMove, { passive: false });
-    sliderTrack.addEventListener('touchend', handleTouchEnd, { passive: false });
-    
-    // Mouse drag event listeners for desktop
-    sliderTrack.addEventListener('mousedown', handleMouseDown);
-    sliderTrack.addEventListener('mousemove', handleMouseMove);
-    sliderTrack.addEventListener('mouseup', handleMouseUp);
-    sliderTrack.addEventListener('mouseleave', handleMouseUp);
-    
-    // Prevent context menu on long press
-    sliderTrack.addEventListener('contextmenu', (e) => e.preventDefault());
-    
-    // Touch event handlers
-    function handleTouchStart(e) {
-        if (isTransitioning) return;
-        startX = e.touches[0].clientX;
-        currentX = startX;
-        isDragging = true;
-        sliderTrack.style.transition = 'none';
-    }
-    
-    function handleTouchMove(e) {
-        if (!isDragging || isTransitioning) return;
-        
-        currentX = e.touches[0].clientX;
-        const diffX = currentX - startX;
-        const translateX = -currentSlide * 20 + (diffX / sliderTrack.offsetWidth) * 100;
-        
-        // Prevent over-scrolling
-        if (translateX > 0) translateX = 0;
-        if (translateX < -80) translateX = -80; // 4 * 20%
-        
-        sliderTrack.style.transform = `translateX(${translateX}%)`;
-        e.preventDefault();
-    }
-    
-    function handleTouchEnd(e) {
-        if (!isDragging || isTransitioning) return;
-        
-        const diffX = currentX - startX;
-        const threshold = sliderTrack.offsetWidth * 0.2; // 20% of slider width
-        
-        sliderTrack.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                prevSlide();
-            } else {
-                nextSlide();
-            }
-        } else {
-            updateSlider(); // Snap back to current slide
-        }
-        
-        isDragging = false;
-    }
-    
-    // Mouse event handlers
-    function handleMouseDown(e) {
-        if (isTransitioning) return;
-        startX = e.clientX;
-        currentX = startX;
-        isDragging = true;
-        sliderTrack.style.transition = 'none';
-        e.preventDefault();
-    }
-    
-    function handleMouseMove(e) {
-        if (!isDragging || isTransitioning) return;
-        
-        currentX = e.clientX;
-        const diffX = currentX - startX;
-        const translateX = -currentSlide * 20 + (diffX / sliderTrack.offsetWidth) * 100;
-        
-        // Prevent over-scrolling
-        if (translateX > 0) translateX = 0;
-        if (translateX < -80) translateX = -80;
-        
-        sliderTrack.style.transform = `translateX(${translateX}%)`;
-    }
-    
-    function handleMouseUp(e) {
-        if (!isDragging || isTransitioning) return;
-        
-        const diffX = currentX - startX;
-        const threshold = sliderTrack.offsetWidth * 0.2;
-        
-        sliderTrack.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                prevSlide();
-            } else {
-                nextSlide();
-            }
-        } else {
-            updateSlider();
-        }
-        
-        isDragging = false;
-    }
-    
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (document.querySelector('.page[data-page="home"]').classList.contains('active')) {
+        if (sliderTrack.closest('.page.active')) {
             if (e.key === 'ArrowLeft') {
                 prevSlide();
             } else if (e.key === 'ArrowRight') {
@@ -265,7 +157,7 @@ function initSlider() {
         }
     });
     
-    // Auto-play functionality (optional - can be disabled)
+    // Auto-play functionality
     let autoPlayInterval;
     
     function startAutoPlay() {
@@ -276,18 +168,13 @@ function initSlider() {
         clearInterval(autoPlayInterval);
     }
     
-    // Pause auto-play on hover/interaction
+    // Pause auto-play on hover
     sliderTrack.addEventListener('mouseenter', stopAutoPlay);
     sliderTrack.addEventListener('mouseleave', startAutoPlay);
-    sliderTrack.addEventListener('touchstart', stopAutoPlay);
     
-    // Start auto-play after 3 seconds
-    setTimeout(startAutoPlay, 3000);
-    
-    // Initialize slider
-    updateSlider();
+    // Start auto-play
+    startAutoPlay();
 }
-
 
 // Enhanced page transitions
 function initPageTransitions() {
@@ -295,10 +182,8 @@ function initPageTransitions() {
     
     navLinks.forEach((link, index) => {
         link.addEventListener('click', () => {
-            // Add loading state
             document.body.classList.add('loading');
             
-            // Remove loading state after transition
             setTimeout(() => {
                 document.body.classList.remove('loading');
             }, 300);
@@ -306,7 +191,7 @@ function initPageTransitions() {
     });
 }
 
-// Intersection Observer for animations
+// Scroll animations
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -316,13 +201,18 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
     
-    // Observe elements that should animate on scroll
-    const animateElements = document.querySelectorAll('.image-container, .gallery-item, .video-container');
-    animateElements.forEach(el => observer.observe(el));
+    // Observe elements for scroll animations
+    const animatedElements = document.querySelectorAll('.image-container, .gallery-item, .video-container');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 }
-

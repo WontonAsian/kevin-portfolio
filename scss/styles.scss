@@ -475,10 +475,19 @@ main {
     margin-right: auto;
 }
 
+// CSS Variables for carousel
+:root {
+    --slide-width: 600px;
+    --slide-height: 450px; // 4:3 aspect ratio
+    --total-slides: 5;
+    --duplicate-slides: 10; // Double for infinite effect
+}
+
 .slider-wrapper {
     position: relative;
-    width: 100%;
-    aspect-ratio: 4/3;
+    width: var(--slide-width);
+    height: var(--slide-height);
+    margin: 0 auto;
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -487,14 +496,14 @@ main {
 
 .slider-track {
     display: flex;
-    width: 500%; // 5 slides * 100%
+    width: calc(var(--slide-width) * var(--duplicate-slides));
     height: 100%;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(0%);
+    transform: translateX(calc(-1 * var(--slide-width)));
 }
 
 .slider-item {
-    width: 20%; // 100% / 5 slides
+    width: var(--slide-width);
     height: 100%;
     position: relative;
     flex-shrink: 0;
@@ -517,6 +526,7 @@ main {
         padding: 2rem 1.5rem 1.5rem;
         transform: translateY(0);
         transition: var(--transition);
+        z-index: 1;
         
         h3 {
             font-size: 1.5rem;
@@ -552,7 +562,7 @@ main {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    z-index: 10;
+    z-index: 20;
     box-shadow: var(--shadow);
     
     &:hover {
@@ -580,35 +590,6 @@ main {
     right: 1rem;
 }
 
-// Dots indicator
-.slider-dots {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: var(--transition);
-    
-    &:hover {
-        background: rgba(255, 255, 255, 0.8);
-        transform: scale(1.2);
-    }
-    
-    &.active {
-        background: var(--white);
-        transform: scale(1.3);
-    }
-}
 
 // Footer
 footer {
@@ -691,10 +672,13 @@ footer {
 }
 
 // Focus states for accessibility
-button:focus,
-.dot:focus {
+button:focus:not(.slider-nav) {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+.slider-nav:focus {
+    outline: none;
 }
 
 .nav-link:focus {
@@ -926,10 +910,6 @@ button:focus,
         }
     }
     
-    .dot {
-        width: 10px;
-        height: 10px;
-    }
     
     // Hide slider content overlay on mobile
     .slider-content {
