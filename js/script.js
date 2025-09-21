@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set initial page
         showPage('home');
         
-        console.log('Portfolio initialized successfully');
+        // Portfolio initialized successfully
     } catch (error) {
-        console.error('Error initializing portfolio:', error);
+        // Error initializing portfolio
     }
 });
 
@@ -94,15 +94,13 @@ function showPage(pageName) {
             
             // Update URL hash for better UX
             window.history.replaceState(null, null, `#${pageName}`);
-        } else {
-            console.warn(`Page "${pageName}" not found`);
         }
         
         // Update navigation
         updateActiveNavigation(pageName);
         
     } catch (error) {
-        console.error('Error showing page:', error);
+        // Error showing page
     }
 }
 
@@ -200,7 +198,6 @@ function initializeSlider() {
     const nextBtn = document.getElementById('sliderNext');
     
     if (!sliderTrack || !prevBtn || !nextBtn) {
-        console.warn('Slider elements not found');
         return;
     }
     
@@ -319,14 +316,14 @@ function initializeSlider() {
     document.addEventListener('keydown', (e) => {
         if (sliderTrack.closest('.page.active')) {
             switch (e.key) {
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    prevSlide();
-                    break;
-                case 'ArrowRight':
-                    e.preventDefault();
-                    nextSlide();
-                    break;
+            case 'ArrowLeft':
+                e.preventDefault();
+                prevSlide();
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                nextSlide();
+                break;
             }
         }
     });
@@ -374,8 +371,8 @@ function initializeVideoStates() {
         });
         
         // Handle loading errors
-        video.addEventListener('error', (e) => {
-            console.error('Video loading error:', e);
+        video.addEventListener('error', () => {
+            // Video loading error
         });
     });
 }
@@ -413,7 +410,6 @@ function initializePageTransitions() {
 function initializeScrollAnimations() {
     // Check if IntersectionObserver is supported
     if (!('IntersectionObserver' in window)) {
-        console.warn('IntersectionObserver not supported, scroll animations disabled');
         return;
     }
     
@@ -466,20 +462,6 @@ function debounce(func, wait) {
     };
 }
 
-/**
- * Check if an element is in viewport
- * @param {HTMLElement} element - Element to check
- * @returns {boolean} True if element is in viewport
- */
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
 
 // =============================================================================
 // ERROR HANDLING
@@ -488,15 +470,15 @@ function isInViewport(element) {
 /**
  * Global error handler for unhandled errors
  */
-window.addEventListener('error', (e) => {
-    console.error('Global error:', e.error);
+window.addEventListener('error', () => {
+    // Global error handler
 });
 
 /**
  * Handle unhandled promise rejections
  */
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled promise rejection:', e.reason);
+window.addEventListener('unhandledrejection', () => {
+    // Unhandled promise rejection handler
 });
 
 // =============================================================================
@@ -508,7 +490,7 @@ window.addEventListener('unhandledrejection', (e) => {
  */
 window.addEventListener('load', () => {
     if ('performance' in window) {
-        const perfData = performance.getEntriesByType('navigation')[0];
-        console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+        // Monitor page load performance
+        performance.getEntriesByType('navigation')[0];
     }
 });
