@@ -58,9 +58,17 @@ body {
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: scroll; // Always show vertical scrollbar
+    overflow-y: auto; // Allow scrolling when content overflows (like About page)
     display: flex;
     flex-direction: column;
+    
+    // Hide scrollbar but keep scrolling functionality
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // Internet Explorer 10+
+    
+    &::-webkit-scrollbar {
+        display: none; // WebKit browsers (Chrome, Safari, Edge)
+    }
 }
 
 // Header
@@ -157,19 +165,20 @@ main {
         align-items: center;
         padding: 3rem;
         gap: 2rem;
-        min-height: 600px;
+        min-height: 700px; // Increased to match gallery visual height
     }
     
     &[data-page="about"].active {
         align-items: flex-start;
         padding: 3rem 3rem 3rem 3rem;
+        min-height: 700px; // Match other pages
     }
     
     &[data-page="gallery"].active {
         align-items: center;
         padding: 3rem;
         gap: 2rem;
-        min-height: 600px;
+        min-height: 700px; // Match other pages
         flex-direction: column;
     }
     
@@ -177,14 +186,14 @@ main {
         align-items: center;
         padding: 3rem;
         gap: 2rem;
-        min-height: 600px;
+        min-height: 700px; // Match other pages
     }
     
     &[data-page="video"].active {
         align-items: center;
         padding: 3rem;
         gap: 2rem;
-        min-height: 600px;
+        min-height: 700px; // Match other pages
     }
 }
 
@@ -319,16 +328,18 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    @include card-style;
+    background: var(--white);
+    border-radius: var(--border-radius);
     flex-shrink: 0;
     position: relative;
+    padding: 1rem; // Add padding to prevent images from hitting edges
     
     img {
-        @include image-style;
-    }
-    
-    &:hover img {
-        transform: scale(var(--hover-scale));
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--border-radius);
     }
 }
 
@@ -487,6 +498,8 @@ main {
     --tablet: 768px;
     --desktop: 1024px;
     --large-desktop: 1440px;
+    --ultra-wide: 2560px;
+    --true-4k: 3840px;
 }
 
 .slider-wrapper {
@@ -764,6 +777,7 @@ button:focus:not(.slider-nav) {
         width: 100%;
         max-width: 500px;
         height: 350px;
+        padding: 0.75rem; // Add padding for mobile
     }
 }
 
@@ -834,6 +848,7 @@ button:focus:not(.slider-nav) {
         height: 250px;
         margin-top: 0;
         margin-bottom: 2rem;
+        padding: 0.5rem; // Add padding for tablet
     }
     
     .gallery-grid {
@@ -926,32 +941,57 @@ button:focus:not(.slider-nav) {
 
 // 4K and Ultra-wide responsive design
 @media (min-width: 2560px) {
+    // CSS Variables for 2K/Ultra-wide
+    :root {
+        --slide-width: 800px;
+        --slide-height: 600px; // 4:3 aspect ratio
+    }
+    
     main {
-        max-width: 2000px;
-        padding: 4rem;
+        max-width: 2400px; // Scale up from 1600px desktop (1.5x)
+        padding: 5rem 6rem; // Scale up from 3rem desktop (1.67x)
+        margin: 5rem auto 5rem auto; // Scale up from 3rem desktop (1.67x)
     }
     
     .content {
-        max-width: 1000px;
+        max-width: 1400px;
+        padding: 5rem 6rem;
+        margin: 0 auto;
         
         h1 {
             font-size: 4.5rem;
+            margin-bottom: 2.5rem;
         }
         
         p {
             font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
         }
     }
     
-    .image-container {
-        width: 800px;
-        height: 500px;
+    // Ensure all page content expands for 4K
+    .page[data-page="home"] .content,
+    .page[data-page="about"] .content,
+    .page[data-page="contact"] .content,
+    .page[data-page="video"] .content {
+        max-width: 1400px;
+        padding: 5rem 6rem;
     }
     
+    .image-container {
+        max-width: 1200px;
+        height: 800px;
+        margin: 0 auto 3rem;
+        padding: 2rem; // Increased padding for 4K
+    }
     
     .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3rem;
+        max-width: 1800px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem;
+        padding: 3rem 6rem; // Add horizontal padding to match content
+        margin: 0 auto;
     }
     
     .gallery-item {
@@ -959,11 +999,41 @@ button:focus:not(.slider-nav) {
     }
     
     .video-container {
-        max-width: 900px;
+        max-width: 1600px; // Scale up from 700px desktop
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        height: 699px; // Fixed height for consistent spacing
+        justify-content: center; // Center content within fixed height
+        
+        video {
+            width: 100%;
+            height: 550px; // Fixed height to fill container better
+            object-fit: cover; // Fill space when showing poster
+            object-position: center; // Center the cropped area
+            flex: 0 0 auto; // Don't grow, maintain natural size
+        }
+        
+        // When video is playing, maintain full resolution
+        video.playing {
+            object-fit: contain; // Keep full resolution when playing
+        }
+        
+        .video-info {
+            padding: 2rem 2rem 2.5rem 2rem; // Scale up padding for 4K
+            font-size: 1.3rem; // Scale up text size
+            flex: 0 0 auto; // Don't grow, maintain natural size
+            
+            h3 {
+                font-size: 2rem; // Scale up heading
+                margin-bottom: 1rem;
+            }
+        }
     }
     
     .slider-container {
-        max-width: 600px;
+        max-width: 900px;
+        margin: 0 auto;
     }
     
     .slider-wrapper {
@@ -971,82 +1041,119 @@ button:focus:not(.slider-nav) {
     }
     
     .slider-nav {
-        width: 56px;
-        height: 56px;
+        width: 70px;
+        height: 70px;
         
         svg {
-            width: 28px;
-            height: 28px;
+            width: 35px;
+            height: 35px;
         }
     }
     
     .slider-content {
-        padding: 3rem 2rem 2rem;
+        padding: 3rem 2.5rem 2.5rem;
         
         h3 {
-            font-size: 1.75rem;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
         }
     }
     
     header {
-        padding: 2rem 3rem;
+        padding: 2.5rem 6rem;
         
         .nav-link {
-            font-size: 1.3rem;
-            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            padding: 1.2rem 2.5rem;
+            margin: 0 1rem;
         }
     }
     
     footer {
-        padding: 3rem 0;
+        padding: 3rem 6rem;
+        font-size: 1.2rem;
         
         .social-links a {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             
             svg {
-                width: 28px;
-                height: 28px;
+                width: 30px;
+                height: 30px;
             }
         }
     }
-}
-
-@media (min-width: 3840px) {
-    main {
-        max-width: 2400px;
-        padding: 5rem;
-    }
     
-    .content {
+    // Accordion styling for 4K
+    .accordion {
         max-width: 1200px;
+        margin: 0 auto;
         
-        h1 {
-            font-size: 5.5rem;
+        .accordion-header {
+            padding: 2rem;
+            font-size: 1.4rem;
         }
         
-        p {
-            font-size: 1.75rem;
+        .accordion-content {
+            padding: 0 2rem 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
         }
     }
     
-    .image-container {
-        width: 1000px;
-        height: 600px;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    // Page-specific enhancements for 4K
+    .page[data-page="home"].active,
+    .page[data-page="about"].active,
+    .page[data-page="gallery"].active,
+    .page[data-page="contact"].active,
+    .page[data-page="video"].active {
+        padding: 5rem 0; // Equal top and bottom padding
         gap: 4rem;
+        min-height: 900px; // Increased proportionally from 700px
+        align-items: stretch; // Make content fill available space
+        justify-content: center; // Center content vertically
+        max-width: none; // Remove any max-width constraints
+        width: 100%;
+        margin: 0; // Remove any margins to let main handle spacing
     }
     
+    // Make page sections fill main container like gallery/video
+    .page[data-page="home"].active,
+    .page[data-page="contact"].active,
+    .page[data-page="video"].active {
+        height: 100%; // Fill the full height of main container
+        display: flex;
+        flex-direction: column;
+        justify-content: center; // Center content vertically
+        align-items: center; // Center content horizontally
+    }
     
-    .video-container {
-        max-width: 1200px;
+    // About page needs to allow content to expand beyond viewport
+    .page[data-page="about"].active {
+        min-height: 100%; // Allow content to expand beyond viewport height
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; // Start from top for scrollable content
+        align-items: center; // Center content horizontally
+    }
+    
+    // Specific page content expansion for 4K - copy gallery layout approach
+    .page[data-page="home"].active .content,
+    .page[data-page="about"].active .content,
+    .page[data-page="contact"].active .content,
+    .page[data-page="video"].active .content {
+        width: 100%; // Fill full width like gallery-container
+        max-width: 1400px; // Scale up from 800px desktop
+        padding: 5rem 6rem; // Scale up from 3rem desktop
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Center content like gallery
+        justify-content: center; // Center content vertically
     }
 }
 
@@ -1095,6 +1202,7 @@ button:focus:not(.slider-nav) {
     .image-container {
         height: 200px;
         margin-bottom: 1rem;
+        padding: 0.5rem; // Add padding for mobile
     }
     
     .gallery-grid {

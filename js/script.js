@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize enhanced page transitions
     initPageTransitions();
+    
+    // Initialize video state management
+    initVideoStates();
 });
 
 function showPage(pageName) {
@@ -224,5 +227,31 @@ function initScrollAnimations() {
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
+    });
+}
+
+// Video poster/playing state management
+function initVideoStates() {
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        // Add playing class when video starts playing
+        video.addEventListener('play', () => {
+            video.classList.add('playing');
+        });
+        
+        // Remove playing class when video pauses or ends
+        video.addEventListener('pause', () => {
+            video.classList.remove('playing');
+        });
+        
+        video.addEventListener('ended', () => {
+            video.classList.remove('playing');
+        });
+        
+        // Remove playing class when video loads (shows poster)
+        video.addEventListener('loadstart', () => {
+            video.classList.remove('playing');
+        });
     });
 }
