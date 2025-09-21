@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kevin Nguyen's Portfolio - Frontend Developer showcasing projects and skills">
+    <meta name="description" content="Kevin Nguyen's Portfolio - Frontend Developer showcasing projects, photography, and adventures">
+    <meta name="author" content="Kevin Nguyen">
+    <meta name="keywords" content="portfolio, frontend developer, web development, photography, Kevin Nguyen">
+    
+    <!-- Title -->
     <title>Kevin Nguyen - Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5GpPC90ZXh0Pjwvc3ZnPg==">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5GpPC90ZXh0Pjwvc3ZnPg==">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="css/styles.min.css">
-    <script src="js/script.js"></script>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <a href="#" class="nav-link" data-page="home">Home</a>
+    <!-- =============================================================================
+         HEADER & NAVIGATION
+         ============================================================================= -->
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#" class="nav-link" data-page="home" aria-current="page">Home</a>
             <a href="#" class="nav-link" data-page="about">About</a>
             <a href="#" class="nav-link" data-page="gallery">Gallery</a>
             <a href="#" class="nav-link" data-page="video">Video</a>
@@ -23,20 +37,23 @@
         </nav>
     </header>
 
-    <main>
+    <!-- =============================================================================
+         MAIN CONTENT
+         ============================================================================= -->
+    <main role="main">
         <!-- Home Page -->
-        <section class="page" data-page="home">
+        <section class="page" data-page="home" aria-labelledby="home-title">
             <div class="content">
-                <h1>Welcome to My Portfolio</h1>
+                <h1 id="home-title">Welcome to My Portfolio</h1>
                 <p>Here's a glimpse of my work and adventures.</p>
                 
-                <!-- Slider Component -->
-                <div class="slider-container">
+                <!-- Image Slider Component -->
+                <div class="slider-container" role="region" aria-label="Photo carousel">
                     <div class="slider-wrapper">
-                        <div class="slider-track" id="sliderTrack">
+                        <div class="slider-track" id="sliderTrack" aria-live="polite">
                             <!-- Duplicate slides for infinite effect -->
-                            <div class="slider-item" data-slide="4">
-                                <img src="images/projectcar.jpg" alt="My cars">
+                            <div class="slider-item" data-slide="4" aria-hidden="true">
+                                <img src="images/projectcar.jpg" alt="Project cars: 2005 Acura RSX and 1997 Integra" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Project Cars</h3>
                                     <p>2005 Acura RSX & 1997 Integra</p>
@@ -44,64 +61,73 @@
                             </div>
                             
                             <!-- Original slides -->
-                            <div class="slider-item active" data-slide="0">
-                                <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington">
+                            <div class="slider-item active" data-slide="0" aria-hidden="false">
+                                <img src="images/smallhighrock.JPG" alt="High Rock Mountain in Washington State during golden hour" loading="lazy">
                                 <div class="slider-content">
                                     <h3>High Rock Mountain</h3>
                                     <p>Washington State Adventure</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="1">
-                                <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle">
+                            
+                            <div class="slider-item" data-slide="1" aria-hidden="true">
+                                <img src="images/cascade.JPG" alt="Cascade Mountains with Seattle skyline in the background" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Cascade Mountains</h3>
                                     <p>Seattle Skyline Views</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="2">
-                                <img src="images/cherry-blossam.JPG" alt="Cherry Blossoms at UW">
+                            
+                            <div class="slider-item" data-slide="2" aria-hidden="true">
+                                <img src="images/cherry-blossam.JPG" alt="Cherry blossoms in full bloom at University of Washington" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Cherry Blossoms</h3>
                                     <p>University of Washington</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="3">
-                                <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway">
+                            
+                            <div class="slider-item" data-slide="3" aria-hidden="true">
+                                <img src="images/motercylce-roller.JPG" alt="Motorcycle on open highway with scenic backdrop" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Highway Adventure</h3>
                                     <p>Open Road Freedom</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="4">
-                                <img src="images/projectcar.jpg" alt="My cars">
+                            
+                            <div class="slider-item" data-slide="4" aria-hidden="true">
+                                <img src="images/projectcar.jpg" alt="Project cars: 2005 Acura RSX and 1997 Integra" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Project Cars</h3>
                                     <p>2005 Acura RSX & 1997 Integra</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="0">
-                                <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington">
+                            
+                            <!-- Clone slides for seamless infinite effect -->
+                            <div class="slider-item" data-slide="0" aria-hidden="true">
+                                <img src="images/smallhighrock.JPG" alt="High Rock Mountain in Washington State during golden hour" loading="lazy">
                                 <div class="slider-content">
                                     <h3>High Rock Mountain</h3>
                                     <p>Washington State Adventure</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="1">
-                                <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle">
+                            
+                            <div class="slider-item" data-slide="1" aria-hidden="true">
+                                <img src="images/cascade.JPG" alt="Cascade Mountains with Seattle skyline in the background" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Cascade Mountains</h3>
                                     <p>Seattle Skyline Views</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="2">
-                                <img src="images/cherry-blossam.JPG" alt="Cherry Blossoms at UW">
+                            
+                            <div class="slider-item" data-slide="2" aria-hidden="true">
+                                <img src="images/cherry-blossam.JPG" alt="Cherry blossoms in full bloom at University of Washington" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Cherry Blossoms</h3>
                                     <p>University of Washington</p>
                                 </div>
                             </div>
-                            <div class="slider-item" data-slide="3">
-                                <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway">
+                            
+                            <div class="slider-item" data-slide="3" aria-hidden="true">
+                                <img src="images/motercylce-roller.JPG" alt="Motorcycle on open highway with scenic backdrop" loading="lazy">
                                 <div class="slider-content">
                                     <h3>Highway Adventure</h3>
                                     <p>Open Road Freedom</p>
@@ -109,129 +135,137 @@
                             </div>
                         </div>
                         
-                        <!-- Navigation Arrows -->
+                        <!-- Navigation Controls -->
                         <button class="slider-nav slider-prev" id="sliderPrev" aria-label="Previous slide">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                             </svg>
                         </button>
+                        
                         <button class="slider-nav slider-next" id="sliderNext" aria-label="Next slide">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
                             </svg>
                         </button>
-                        
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About Page -->
-        <section class="page" data-page="about">
+        <section class="page" data-page="about" aria-labelledby="about-title">
             <div class="content">
-                <h1>About Me</h1>
+                <h1 id="about-title">About Me</h1>
                 <p>I'm a UW Graduate who loves both coding and adventure. When I'm not building websites, you'll find me exploring the outdoors and capturing moments through photography.</p>
                 
-                <!-- Accordion Component -->
-                <div class="accordion">
-                    <div class="accordion-item active" data-accordion-item="1">
+                <!-- Skills Accordion -->
+                <div class="accordion" role="tablist" aria-label="Skills and interests">
+                    <div class="accordion-item active" data-accordion-item="1" role="tab" aria-expanded="true" aria-controls="panel-1">
                         <div class="accordion-header">
-                            <span class="accordion-icon">－</span>
+                            <span class="accordion-icon" aria-hidden="true">－</span>
                             <h3>Frontend Development</h3>
                         </div>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
                             <p>I specialize in creating responsive, modern web experiences using HTML, CSS, JavaScript, and React. My focus is on clean code, performance, and user experience.</p>
                         </div>
                     </div>
                     
-                    <div class="accordion-item" data-accordion-item="2">
+                    <div class="accordion-item" data-accordion-item="2" role="tab" aria-expanded="false" aria-controls="panel-2">
                         <div class="accordion-header">
-                            <span class="accordion-icon">＋</span>
+                            <span class="accordion-icon" aria-hidden="true">＋</span>
                             <h3>Photography & Adventure</h3>
                         </div>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="panel-2" role="tabpanel" aria-labelledby="tab-2">
                             <p>When I'm not coding, I'm exploring the Pacific Northwest with my camera. From mountain peaks to coastal trails, I capture the beauty of nature and share those moments through my lens.</p>
                         </div>
                     </div>
                     
-                    <div class="accordion-item" data-accordion-item="3">
+                    <div class="accordion-item" data-accordion-item="3" role="tab" aria-expanded="false" aria-controls="panel-3">
                         <div class="accordion-header">
-                            <span class="accordion-icon">＋</span>
+                            <span class="accordion-icon" aria-hidden="true">＋</span>
                             <h3>Car Maintenance & Problem Solving</h3>
                         </div>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="panel-3" role="tabpanel" aria-labelledby="tab-3">
                             <p>I love working on my cars - a 2005 Acura RSX and 1997 Acura Integra. From routine maintenance to troubleshooting complex issues, I approach both car problems and coding challenges with the same systematic mindset: diagnose the issue, research solutions, and implement fixes step by step.</p>
                         </div>
                     </div>
                     
-                    <div class="accordion-item" data-accordion-item="4">
+                    <div class="accordion-item" data-accordion-item="4" role="tab" aria-expanded="false" aria-controls="panel-4">
                         <div class="accordion-header">
-                            <span class="accordion-icon">＋</span>
+                            <span class="accordion-icon" aria-hidden="true">＋</span>
                             <h3>Continuous Learning</h3>
                         </div>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="panel-4" role="tabpanel" aria-labelledby="tab-4">
                             <p>The tech world evolves rapidly, and I'm always learning new technologies and techniques. Whether it's mastering new frameworks or exploring different photography styles, I believe in staying curious and adaptable.</p>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="image-container">
-                <img src="images/projectcar.jpg" alt="My cars">
+                <img src="images/projectcar.jpg" alt="My project cars: 2005 Acura RSX and 1997 Acura Integra in a garage setting" loading="lazy">
             </div>
         </section>
 
         <!-- Gallery Page -->
-        <section class="page" data-page="gallery">
+        <section class="page" data-page="gallery" aria-labelledby="gallery-title">
             <div class="content">
-                <h1>Photo Gallery</h1>
+                <h1 id="gallery-title">Photo Gallery</h1>
                 <p>Explore my photography collection featuring landscapes, adventures, and memorable moments.</p>
             </div>
+            
             <div class="gallery-container">
-                <div class="gallery-grid">
-                    <div class="gallery-item" data-category="landscape">
-                        <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington" loading="lazy">
+                <div class="gallery-grid" role="grid" aria-label="Photo gallery">
+                    <div class="gallery-item" data-category="landscape" role="gridcell">
+                        <img src="images/smallhighrock.JPG" alt="High Rock Mountain peak in Washington State during golden hour with dramatic lighting" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>High Rock Mountain</h3>
                             <p>Washington State</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="adventure">
-                        <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway" loading="lazy">
+                    
+                    <div class="gallery-item" data-category="adventure" role="gridcell">
+                        <img src="images/motercylce-roller.JPG" alt="Motorcycle rider on open highway with scenic mountain backdrop" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>Highway Adventure</h3>
                             <p>Open Road</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="nature">
-                        <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle" loading="lazy">
+                    
+                    <div class="gallery-item" data-category="nature" role="gridcell">
+                        <img src="images/cascade.JPG" alt="Cascade Mountains range with Seattle skyline visible in the distance" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>Cascade Mountains</h3>
                             <p>Seattle, WA</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="nature">
-                        <img src="images/cherry-blossam.JPG" alt="Cherry Blossoms at UW" loading="lazy">
+                    
+                    <div class="gallery-item" data-category="nature" role="gridcell">
+                        <img src="images/cherry-blossam.JPG" alt="Pink cherry blossoms in full bloom at University of Washington campus" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>Cherry Blossoms</h3>
                             <p>University of Washington</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="landscape">
-                        <img src="images/mounthood.JPG" alt="Mount Hood - Oregon" loading="lazy">
+                    
+                    <div class="gallery-item" data-category="landscape" role="gridcell">
+                        <img src="images/mounthood.JPG" alt="Mount Hood snow-capped peak in Oregon with clear blue sky" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>Mount Hood</h3>
                             <p>Oregon</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="travel">
-                        <img src="images/kyoto.JPG" alt="Kyoto - Japan" loading="lazy">
+                    
+                    <div class="gallery-item" data-category="travel" role="gridcell">
+                        <img src="images/kyoto.JPG" alt="Traditional Japanese architecture in Kyoto with cherry blossoms" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>Kyoto</h3>
                             <p>Japan</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="travel">
-                        <img src="images/shibuya.jpg" alt="Shibuya - Tokyo" loading="lazy">
+                    
+                    <div class="gallery-item" data-category="travel" role="gridcell">
+                        <img src="images/shibuya.jpg" alt="Busy Shibuya crossing in Tokyo with neon lights and crowds" loading="lazy">
                         <div class="gallery-overlay">
                             <h3>Shibuya</h3>
                             <p>Tokyo, Japan</p>
@@ -242,16 +276,23 @@
         </section>
 
         <!-- Video Page -->
-        <section class="page" data-page="video">
+        <section class="page" data-page="video" aria-labelledby="video-title">
             <div class="content">
-                <h1>Cinematic Videos</h1>
-                <p>Watch some of my adventures. These videos captures some moments with friends.</p>
+                <h1 id="video-title">Cinematic Videos</h1>
+                <p>Watch some of my adventures. These videos capture some moments with friends.</p>
             </div>
+            
             <div class="video-container">
-                <video controls poster="images/friends.JPEG">
+                <video 
+                    controls 
+                    poster="images/friends.JPEG"
+                    aria-label="Road trip video with friends playing spikeball"
+                    preload="metadata">
                     <source src="videos/cinematic.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    <track kind="captions" src="" srclang="en" label="English" default>
+                    <p>Your browser does not support the video tag. <a href="videos/cinematic.mp4">Download the video</a> instead.</p>
                 </video>
+                
                 <div class="video-info">
                     <h3>Road Trip With Friends</h3>
                     <p>Driving to the coast with friends to play spikeball</p>
@@ -260,37 +301,59 @@
         </section>
 
         <!-- Contact Page -->
-        <section class="page" data-page="contact">
+        <section class="page" data-page="contact" aria-labelledby="contact-title">
             <div class="content">
-                <h1>Get In Touch</h1>
+                <h1 id="contact-title">Get In Touch</h1>
                 <p>Interested in working together? Let's connect and discuss your next project!</p>
             </div>
+            
             <div class="image-container">
-                <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle">
+                <img src="images/cascade.JPG" alt="Cascade Mountains with Seattle skyline - representing Pacific Northwest connection" loading="lazy">
             </div>
         </section>
     </main>
 
-
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/wontonasian" target="_blank" rel="noopener" aria-label="GitHub">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <!-- =============================================================================
+         FOOTER
+         ============================================================================= -->
+    <footer role="contentinfo">
+        <div class="social-links" role="list" aria-label="Social media links">
+            <a href="https://github.com/wontonasian" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="Visit my GitHub profile (opens in new tab)"
+               role="listitem">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/kevinhnguy/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            
+            <a href="https://www.linkedin.com/in/kevinhnguy/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="Visit my LinkedIn profile (opens in new tab)"
+               role="listitem">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
             </a>
-            <a href="mailto:hoang1huynguyen@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Kevin,%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ABest%20regards," aria-label="Email" title="Send me an email">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            
+            <a href="mailto:hoang1huynguyen@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Kevin,%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ABest%20regards," 
+               aria-label="Send me an email about portfolio opportunities"
+               title="Send me an email"
+               role="listitem">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
             </a>
         </div>
-        <p class="copyright">Kevin Nguyen 2025</p>
+        
+        <p class="copyright">&copy; 2025 Kevin Nguyen.</p>
     </footer>
+
+    <!-- =============================================================================
+         SCRIPTS
+         ============================================================================= -->
+    <script src="js/script.js"></script>
 </body>
 </html>
