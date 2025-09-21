@@ -481,6 +481,12 @@ main {
     --slide-height: 450px; // 4:3 aspect ratio
     --total-slides: 5;
     --duplicate-slides: 10; // Double for infinite effect
+    
+    // Responsive breakpoints
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large-desktop: 1440px;
 }
 
 .slider-wrapper {
@@ -492,6 +498,7 @@ main {
     overflow: hidden;
     box-shadow: var(--shadow);
     background: var(--white);
+    max-width: 100%;
 }
 
 .slider-track {
@@ -1043,7 +1050,14 @@ button:focus:not(.slider-nav) {
     }
 }
 
+// Mobile Responsive (480px and below)
 @media (max-width: 480px) {
+    // CSS Variables for mobile
+    :root {
+        --slide-width: 280px;
+        --slide-height: 210px; // 4:3 aspect ratio
+    }
+    
     header {
         padding: 0.5rem 0.75rem;
         
@@ -1058,22 +1072,161 @@ button:focus:not(.slider-nav) {
         }
     }
     
+    main {
+        padding: 1rem 0.5rem;
+        margin: 0.5rem auto;
+    }
+    
+    .page {
+        padding: 1rem 0.75rem;
+        gap: 1rem;
+    }
+    
     .content h1 {
         font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .content p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
     }
     
     .image-container {
         height: 200px;
-        margin-bottom: 2rem;
-    }
-    
-    .page {
-        padding: 0.75rem;
-        gap: 1rem;
+        margin-bottom: 1rem;
     }
     
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 1rem 0;
+    }
+    
+    // Slider responsive for mobile
+    .slider-container {
+        max-width: 100%;
+        margin: 1rem auto;
+    }
+    
+    .slider-nav {
+        width: 36px;
+        height: 36px;
+        
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+    
+    .slider-prev {
+        left: 0.5rem;
+    }
+    
+    .slider-next {
+        right: 0.5rem;
+    }
+    
+    .slider-content {
+        padding: 1rem 0.75rem 0.75rem;
+        
+        h3 {
+            font-size: 1.1rem;
+        }
+        
+        p {
+            font-size: 0.85rem;
+        }
+    }
+}
+
+// Tablet Responsive (481px to 768px)
+@media (min-width: 481px) and (max-width: 768px) {
+    // CSS Variables for tablet
+    :root {
+        --slide-width: 400px;
+        --slide-height: 300px; // 4:3 aspect ratio
+    }
+    
+    main {
+        padding: 1.5rem 1rem;
+        margin: 1rem auto;
+    }
+    
+    .page {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .content p {
+        font-size: 1.1rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    // Slider responsive for tablet
+    .slider-container {
+        max-width: 450px;
+    }
+    
+    .slider-nav {
+        width: 44px;
+        height: 44px;
+        
+        svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
+    
+    .slider-content {
+        padding: 1.5rem 1rem 1rem;
+        
+        h3 {
+            font-size: 1.3rem;
+        }
+        
+        p {
+            font-size: 0.95rem;
+        }
+    }
+}
+
+// Small Desktop (769px to 1024px)
+@media (min-width: 769px) and (max-width: 1024px) {
+    // CSS Variables for small desktop
+    :root {
+        --slide-width: 500px;
+        --slide-height: 375px; // 4:3 aspect ratio
+    }
+    
+    main {
+        padding: 2rem 1.5rem;
+        margin: 2rem auto;
+    }
+    
+    .page {
+        padding: 2rem;
+        gap: 2rem;
+    }
+    
+    .content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .content p {
+        font-size: 1.2rem;
+    }
+    
+    // Slider responsive for small desktop
+    .slider-container {
+        max-width: 550px;
     }
 }

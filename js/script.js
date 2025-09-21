@@ -85,11 +85,16 @@ function initSlider() {
     
     let currentSlide = 1; // Start at slide 1 (first real slide)
     const totalSlides = 5;
-    const slideWidth = 600; // CSS variable --slide-width
     let isTransitioning = false;
+    
+    // Get slide width from CSS variable
+    function getSlideWidth() {
+        return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--slide-width'));
+    }
     
     // Update slider position
     function updateSlider() {
+        const slideWidth = getSlideWidth();
         const translateX = -currentSlide * slideWidth;
         sliderTrack.style.transform = `translateX(${translateX}px)`;
     }
@@ -174,6 +179,11 @@ function initSlider() {
     
     // Start auto-play
     startAutoPlay();
+    
+    // Handle window resize to recalculate slider position
+    window.addEventListener('resize', () => {
+        updateSlider();
+    });
 }
 
 // Enhanced page transitions
