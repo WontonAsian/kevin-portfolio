@@ -29,9 +29,70 @@
             <div class="content">
                 <h1>Welcome to My Portfolio</h1>
                 <p>Here's a glimpse of my work and adventures.</p>
-            </div>
-            <div class="image-container">
-                <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington">
+                
+                <!-- Slider Component -->
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <div class="slider-track" id="sliderTrack">
+                            <div class="slider-item active" data-slide="0">
+                                <img src="images/smallhighrock.JPG" alt="High Rock Mountain - Washington">
+                                <div class="slider-content">
+                                    <h3>High Rock Mountain</h3>
+                                    <p>Washington State Adventure</p>
+                                </div>
+                            </div>
+                            <div class="slider-item" data-slide="1">
+                                <img src="images/cascade.JPG" alt="Cascade Mountains - Seattle">
+                                <div class="slider-content">
+                                    <h3>Cascade Mountains</h3>
+                                    <p>Seattle Skyline Views</p>
+                                </div>
+                            </div>
+                            <div class="slider-item" data-slide="2">
+                                <img src="images/cherry-blossam.JPG" alt="Cherry Blossoms at UW">
+                                <div class="slider-content">
+                                    <h3>Cherry Blossoms</h3>
+                                    <p>University of Washington</p>
+                                </div>
+                            </div>
+                            <div class="slider-item" data-slide="3">
+                                <img src="images/motercylce-roller.JPG" alt="Motorcycle on Highway">
+                                <div class="slider-content">
+                                    <h3>Highway Adventure</h3>
+                                    <p>Open Road Freedom</p>
+                                </div>
+                            </div>
+                            <div class="slider-item" data-slide="4">
+                                <img src="images/projectcar.jpg" alt="My cars">
+                                <div class="slider-content">
+                                    <h3>Project Cars</h3>
+                                    <p>2005 Acura RSX & 1997 Integra</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation Arrows -->
+                        <button class="slider-nav slider-prev" id="sliderPrev" aria-label="Previous slide">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                            </svg>
+                        </button>
+                        <button class="slider-nav slider-next" id="sliderNext" aria-label="Next slide">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dots Indicator -->
+                        <div class="slider-dots">
+                            <span class="dot active" data-slide="0"></span>
+                            <span class="dot" data-slide="1"></span>
+                            <span class="dot" data-slide="2"></span>
+                            <span class="dot" data-slide="3"></span>
+                            <span class="dot" data-slide="4"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -125,6 +186,27 @@
                             <p>University of Washington</p>
                         </div>
                     </div>
+                    <div class="gallery-item" data-category="landscape">
+                        <img src="images/mounthood.JPG" alt="Mount Hood - Oregon" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>Mount Hood</h3>
+                            <p>Oregon</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="travel">
+                        <img src="images/kyoto.JPG" alt="Kyoto - Japan" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>Kyoto</h3>
+                            <p>Japan</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="travel">
+                        <img src="images/shibuya.jpg" alt="Shibuya - Tokyo" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3>Shibuya</h3>
+                            <p>Tokyo, Japan</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -158,6 +240,7 @@
             </div>
         </section>
     </main>
+
 
     <footer>
         <div class="social-links">
