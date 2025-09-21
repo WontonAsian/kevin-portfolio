@@ -692,10 +692,13 @@ footer {
 
 // Focus states for accessibility
 button:focus,
-.nav-link:focus,
 .dot:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+.nav-link:focus {
+    outline: none;
 }
 
 // Animations
