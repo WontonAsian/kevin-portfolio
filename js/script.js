@@ -328,6 +328,67 @@ function initializeSlider() {
         }
     });
     
+    // Touch/Drag functionality for mobile
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let hasMoved = false;
+    
+    function handleTouchStart(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isDragging = true;
+        hasMoved = false;
+        
+        // Stop auto-play while dragging
+        stopAutoPlay();
+    }
+    
+    function handleTouchMove(e) {
+        if (!isDragging) return;
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = startX - currentX;
+        const diffY = startY - currentY;
+        
+        // Only proceed if horizontal movement is greater than vertical (swipe gesture)
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            e.preventDefault(); // Prevent scrolling
+            hasMoved = true;
+        }
+    }
+    
+    function handleTouchEnd(e) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        
+        if (!hasMoved) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+        const threshold = 50; // Minimum swipe distance
+        
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                // Swipe left - next slide
+                nextSlide();
+            } else {
+                // Swipe right - previous slide
+                prevSlide();
+            }
+        }
+        
+        // Resume auto-play after touch interaction
+        setTimeout(startAutoPlay, 1000);
+    }
+    
+    // Add touch event listeners to slider wrapper
+    sliderWrapper.addEventListener('touchstart', handleTouchStart, { passive: false });
+    sliderWrapper.addEventListener('touchmove', handleTouchMove, { passive: false });
+    sliderWrapper.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
     // Pause auto-play on hover
     sliderTrack.addEventListener('mouseenter', stopAutoPlay);
     sliderTrack.addEventListener('mouseleave', startAutoPlay);
