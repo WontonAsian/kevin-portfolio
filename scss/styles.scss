@@ -853,6 +853,15 @@ button:focus:not(.slider-nav) {
         padding: 0.5rem;
     }
     
+    // Contact page mobile styling - image container now inside content
+    .page[data-page="contact"] .content .image-container {
+        width: 100%;
+        max-width: 500px;
+        height: 250px;
+        margin-top: 1rem; // Space after text content
+        margin-bottom: 0;
+    }
+    
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
@@ -885,7 +894,7 @@ button:focus:not(.slider-nav) {
     
     // Mobile page padding
     .page {
-        padding: 5rem 1.5rem 4rem 1.5rem;
+        padding: 2rem 1.5rem 2rem 1.5rem;
     }
     
     // Mobile slider styles
@@ -966,7 +975,7 @@ button:focus:not(.slider-nav) {
     
     .content {
         h1 {
-            font-size: 1.8rem;
+        font-size: 1.8rem;
             margin-bottom: 1rem;
         }
         
@@ -980,6 +989,15 @@ button:focus:not(.slider-nav) {
         height: 200px;
         margin-bottom: 1rem;
         padding: 0.5rem;
+    }
+    
+    // Contact page small mobile styling - image container now inside content
+    .page[data-page="contact"] .content .image-container {
+        width: 100%;
+        max-width: 400px;
+        height: 200px;
+        margin-top: 1rem; // Space after text content
+        margin-bottom: 0;
     }
     
     .gallery-grid {
@@ -1055,6 +1073,15 @@ button:focus:not(.slider-nav) {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+    }
+    
+    // Contact page tablet styling - image container now inside content
+    .page[data-page="contact"] .content .image-container {
+        width: 100%;
+        max-width: 600px;
+        height: 300px;
+        margin-top: 1.5rem; // Space after text content
+        margin-bottom: 0;
     }
     
     // Slider responsive for tablet
