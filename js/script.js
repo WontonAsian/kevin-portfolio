@@ -68,7 +68,7 @@ function initializeNavigation() {
             const pageName = this.getAttribute('data-page');
             
             if (pageName) {
-                showPage(pageName);
+            showPage(pageName);
                 updateNavigationState(this);
             }
         });
@@ -82,15 +82,15 @@ function initializeNavigation() {
 function showPage(pageName) {
     try {
         // Hide all pages
-        const pages = document.querySelectorAll('.page');
-        pages.forEach(page => {
-            page.classList.remove('active');
-        });
-        
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+    
         // Show target page
-        const targetPage = document.querySelector(`.page[data-page="${pageName}"]`);
-        if (targetPage) {
-            targetPage.classList.add('active');
+    const targetPage = document.querySelector(`.page[data-page="${pageName}"]`);
+    if (targetPage) {
+        targetPage.classList.add('active');
             
             // Update URL hash for better UX
             window.history.replaceState(null, null, `#${pageName}`);
@@ -130,7 +130,7 @@ function updateNavigationState(clickedLink) {
     });
     
     // Add active state to clicked link
-    clickedLink.classList.add('active');
+        clickedLink.classList.add('active');
     clickedLink.setAttribute('aria-current', 'page');
 }
 
@@ -165,22 +165,22 @@ function initializeAccordion() {
  * @param {HTMLElement} icon - The accordion icon element
  */
 function toggleAccordionItem(item, icon) {
-    const isActive = item.classList.contains('active');
-    
-    // Close all accordion items
+            const isActive = item.classList.contains('active');
+            
+            // Close all accordion items
     document.querySelectorAll('.accordion-item').forEach(otherItem => {
-        otherItem.classList.remove('active');
-        const otherIcon = otherItem.querySelector('.accordion-icon');
+                otherItem.classList.remove('active');
+                const otherIcon = otherItem.querySelector('.accordion-icon');
         if (otherIcon) {
-            otherIcon.textContent = '＋';
+                otherIcon.textContent = '＋';
             otherItem.setAttribute('aria-expanded', 'false');
         }
-    });
-    
-    // Open clicked item if it wasn't active
-    if (!isActive) {
-        item.classList.add('active');
-        icon.textContent = '－';
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                icon.textContent = '－';
         item.setAttribute('aria-expanded', 'true');
     }
 }
@@ -196,8 +196,9 @@ function initializeSlider() {
     const sliderTrack = document.getElementById('sliderTrack');
     const prevBtn = document.getElementById('sliderPrev');
     const nextBtn = document.getElementById('sliderNext');
+    const sliderWrapper = document.querySelector('.slider-wrapper');
     
-    if (!sliderTrack || !prevBtn || !nextBtn) {
+    if (!sliderTrack || !prevBtn || !nextBtn || !sliderWrapper) {
         return;
     }
     
@@ -333,15 +334,20 @@ function initializeSlider() {
     let startY = 0;
     let isDragging = false;
     let hasMoved = false;
+    let isHorizontalSwipe = false;
     
     function handleTouchStart(e) {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
         isDragging = true;
         hasMoved = false;
+        isHorizontalSwipe = false;
         
         // Stop auto-play while dragging
         stopAutoPlay();
+        
+        // Debug: Log touch start
+        console.log('Touch start:', { startX, startY });
     }
     
     function handleTouchMove(e) {
@@ -352,9 +358,15 @@ function initializeSlider() {
         const diffX = startX - currentX;
         const diffY = startY - currentY;
         
-        // Only proceed if horizontal movement is greater than vertical (swipe gesture)
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            e.preventDefault(); // Prevent scrolling
+        // Determine if this is a horizontal swipe early
+        if (!isHorizontalSwipe && Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+            isHorizontalSwipe = true;
+        }
+        
+        // If it's a horizontal swipe, prevent scrolling
+        if (isHorizontalSwipe) {
+            e.preventDefault();
+            e.stopPropagation();
             hasMoved = true;
         }
     }
@@ -364,30 +376,84 @@ function initializeSlider() {
         
         isDragging = false;
         
-        if (!hasMoved) return;
+        // Only process swipe if it was a horizontal movement
+        if (!isHorizontalSwipe || !hasMoved) {
+            setTimeout(startAutoPlay, 500);
+            return;
+        }
         
         const endX = e.changedTouches[0].clientX;
         const diffX = startX - endX;
-        const threshold = 50; // Minimum swipe distance
+        const threshold = 30; // Reduced threshold for better responsiveness
         
         if (Math.abs(diffX) > threshold) {
             if (diffX > 0) {
                 // Swipe left - next slide
+                console.log('Swipe left - next slide');
                 nextSlide();
             } else {
                 // Swipe right - previous slide
+                console.log('Swipe right - previous slide');
                 prevSlide();
             }
+        } else {
+            console.log('Swipe too short:', Math.abs(diffX), 'threshold:', threshold);
         }
         
         // Resume auto-play after touch interaction
         setTimeout(startAutoPlay, 1000);
     }
     
-    // Add touch event listeners to slider wrapper
+    // Add touch event listeners to slider wrapper with better options
     sliderWrapper.addEventListener('touchstart', handleTouchStart, { passive: false });
     sliderWrapper.addEventListener('touchmove', handleTouchMove, { passive: false });
-    sliderWrapper.addEventListener('touchend', handleTouchEnd, { passive: true });
+    sliderWrapper.addEventListener('touchend', handleTouchEnd, { passive: false });
+    
+    // Also add mouse events for better DevTools testing
+    let mouseStartX = 0;
+    let mouseIsDragging = false;
+    
+    function handleMouseDown(e) {
+        mouseStartX = e.clientX;
+        mouseIsDragging = true;
+        stopAutoPlay();
+        e.preventDefault();
+        
+        // Debug: Log mouse down
+        console.log('Mouse down:', { mouseStartX });
+    }
+    
+    function handleMouseMove(e) {
+        if (!mouseIsDragging) return;
+        e.preventDefault();
+    }
+    
+    function handleMouseUp(e) {
+        if (!mouseIsDragging) return;
+        
+        const diffX = mouseStartX - e.clientX;
+        const threshold = 30;
+        
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                console.log('Mouse drag left - next slide');
+                nextSlide();
+            } else {
+                console.log('Mouse drag right - previous slide');
+                prevSlide();
+            }
+        } else {
+            console.log('Mouse drag too short:', Math.abs(diffX), 'threshold:', threshold);
+        }
+        
+        mouseIsDragging = false;
+        setTimeout(startAutoPlay, 1000);
+    }
+    
+    // Add mouse events for DevTools testing
+    sliderWrapper.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
     
     // Pause auto-play on hover
     sliderTrack.addEventListener('mouseenter', stopAutoPlay);
