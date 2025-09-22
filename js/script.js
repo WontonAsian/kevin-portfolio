@@ -68,7 +68,7 @@ function initializeNavigation() {
             const pageName = this.getAttribute('data-page');
             
             if (pageName) {
-            showPage(pageName);
+                showPage(pageName);
                 updateNavigationState(this);
             }
         });
@@ -82,15 +82,15 @@ function initializeNavigation() {
 function showPage(pageName) {
     try {
         // Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.classList.remove('active');
-    });
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
     
         // Show target page
-    const targetPage = document.querySelector(`.page[data-page="${pageName}"]`);
-    if (targetPage) {
-        targetPage.classList.add('active');
+        const targetPage = document.querySelector(`.page[data-page="${pageName}"]`);
+        if (targetPage) {
+            targetPage.classList.add('active');
             
             // Update URL hash for better UX
             window.history.replaceState(null, null, `#${pageName}`);
@@ -130,7 +130,7 @@ function updateNavigationState(clickedLink) {
     });
     
     // Add active state to clicked link
-        clickedLink.classList.add('active');
+    clickedLink.classList.add('active');
     clickedLink.setAttribute('aria-current', 'page');
 }
 
@@ -165,22 +165,22 @@ function initializeAccordion() {
  * @param {HTMLElement} icon - The accordion icon element
  */
 function toggleAccordionItem(item, icon) {
-            const isActive = item.classList.contains('active');
+    const isActive = item.classList.contains('active');
             
-            // Close all accordion items
+    // Close all accordion items
     document.querySelectorAll('.accordion-item').forEach(otherItem => {
-                otherItem.classList.remove('active');
-                const otherIcon = otherItem.querySelector('.accordion-icon');
+        otherItem.classList.remove('active');
+        const otherIcon = otherItem.querySelector('.accordion-icon');
         if (otherIcon) {
-                otherIcon.textContent = '＋';
+            otherIcon.textContent = '＋';
             otherItem.setAttribute('aria-expanded', 'false');
         }
-            });
+    });
             
-            // Open clicked item if it wasn't active
-            if (!isActive) {
-                item.classList.add('active');
-                icon.textContent = '－';
+    // Open clicked item if it wasn't active
+    if (!isActive) {
+        item.classList.add('active');
+        icon.textContent = '－';
         item.setAttribute('aria-expanded', 'true');
     }
 }
@@ -347,7 +347,6 @@ function initializeSlider() {
         stopAutoPlay();
         
         // Debug: Log touch start
-        console.log('Touch start:', { startX, startY });
     }
     
     function handleTouchMove(e) {
@@ -389,15 +388,11 @@ function initializeSlider() {
         if (Math.abs(diffX) > threshold) {
             if (diffX > 0) {
                 // Swipe left - next slide
-                console.log('Swipe left - next slide');
                 nextSlide();
             } else {
                 // Swipe right - previous slide
-                console.log('Swipe right - previous slide');
                 prevSlide();
             }
-        } else {
-            console.log('Swipe too short:', Math.abs(diffX), 'threshold:', threshold);
         }
         
         // Resume auto-play after touch interaction
@@ -420,7 +415,6 @@ function initializeSlider() {
         e.preventDefault();
         
         // Debug: Log mouse down
-        console.log('Mouse down:', { mouseStartX });
     }
     
     function handleMouseMove(e) {
@@ -436,14 +430,10 @@ function initializeSlider() {
         
         if (Math.abs(diffX) > threshold) {
             if (diffX > 0) {
-                console.log('Mouse drag left - next slide');
                 nextSlide();
             } else {
-                console.log('Mouse drag right - previous slide');
                 prevSlide();
             }
-        } else {
-            console.log('Mouse drag too short:', Math.abs(diffX), 'threshold:', threshold);
         }
         
         mouseIsDragging = false;
