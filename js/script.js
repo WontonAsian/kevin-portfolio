@@ -213,7 +213,7 @@ function initializeSlider() {
     function getSlideWidth() {
         const slideWidth = getComputedStyle(document.documentElement)
             .getPropertyValue('--slide-width');
-        return parseInt(slideWidth) || 600; // Fallback to 600px
+        return parseInt(slideWidth) || 600; 
     }
     
     /**
@@ -252,6 +252,7 @@ function initializeSlider() {
         // Check if we need to loop back to beginning
         setTimeout(() => {
             if (currentSlide > CONFIG.slider.totalSlides) {
+                // Jump to real first slide (position 1)
                 currentSlide = 1;
                 sliderTrack.style.transition = 'none';
                 updateSlider();
@@ -278,6 +279,7 @@ function initializeSlider() {
         // Check if we need to loop to end
         setTimeout(() => {
             if (currentSlide < 1) {
+                // Jump to real last slide (position 5)
                 currentSlide = CONFIG.slider.totalSlides;
                 sliderTrack.style.transition = 'none';
                 updateSlider();
